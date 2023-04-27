@@ -37,12 +37,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [AdminController::class, 'index']);
 
-    Route::prefix('/siswa')->group(function () {
+    Route::prefix('/siswas')->group(function () {
         Route::get('/', [SiswaController::class, 'index'])->name('siswa');
         Route::get('/upload', [SiswaController::class, 'upload']);
         Route::post('/import_excel', [SiswaController::class, 'import_excel']);
         Route::get('/tambah', [SiswaController::class, 'create']);
         Route::post('/', [SiswaController::class, 'store']);
+        Route::get('/{siswa}/edit', [SiswaController::class, 'edit']);
+        Route::put('/{id}', [SiswaController::class, 'update']);
+        Route::delete('/{siswa}', [SiswaController::class, 'destroy']);
+        Route::post('/hapusAll', [SiswaController::class, 'hapusAll']);
     });
 
 

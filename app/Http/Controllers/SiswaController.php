@@ -71,7 +71,7 @@ class SiswaController extends Controller
 
 
         // alihkan halaman kembali
-        return redirect('/siswa');
+        return redirect('/siswas');
     }
 
 
@@ -105,7 +105,7 @@ class SiswaController extends Controller
 
         Siswa::create($masuk);
 
-        return redirect('/siswa')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect('/siswas')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -127,7 +127,14 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+
+        $web = Web::latest()->first();
+
+        return view('admin.siswa.edit', [
+            'web' => $web,
+            'title' => 'Siswa',
+            'siswa' => $siswa
+        ]);
     }
 
     /**
@@ -137,9 +144,27 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, Siswa $siswa, $id)
     {
-        //
+        $validate = $this->validate(request(), [
+            'nama'          => 'required',
+            'kelas'         => 'required',
+            'no_ujian'      => 'required',
+            'status'        => 'required',
+            'pesan'         => 'required'
+        ]);
+
+        $cek = Siswa::where('nisn', $id)->first();
+
+        $cek->update([
+            'name' => $request->input('nama'),
+            'class' => $request->input('kelas'),
+            'no_exam' => $request->input('no_ujian'),
+            'status' => $request->input('status'),
+            'message' => $request->input('message')
+        ]);
+
+        return redirect('/siswas')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -150,6 +175,13 @@ class SiswaController extends Controller
      */
     public function destroy(Siswa $siswa)
     {
-        //
+        Siswa::destroy($siswa->id);
+        return redirect('/siswas')->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function hapusAll(Siswa $siswa)
+    {
+        Siswa::truncate();
+        return redirect('/siswas')->with('success', 'Semua Data Berhasil Dihapus');
     }
 }

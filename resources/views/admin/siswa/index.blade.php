@@ -22,9 +22,12 @@
             <div class="card-header">
               <h4></h4>
               <div class="card-header-action">
-                <a href="siswa/tambah" class="btn btn-icon icon-left btn-primary"><i class="fa fa-plus"></i> Tambah Siswa</a>
-                <a href="siswa/upload" class="btn btn-icon icon-left btn-warning"><i class="fa fa-upload"></i> Upload Siswa</a>
-                <a href="#" class="btn btn-icon icon-left btn-danger"><i class="fa fa-trash"></i> Hapus Siswa</a>
+                <a href="siswas/tambah" class="btn btn-icon icon-left btn-primary"><i class="fa fa-plus"></i> Tambah Siswa</a>
+                <a href="siswas/upload" class="btn btn-icon icon-left btn-warning"><i class="fa fa-upload"></i> Upload Siswa</a>
+                <form action="siswas/hapusAll" method="post" class="d-inline">
+                  @csrf
+                <button class="btn btn-icon icon-left btn-danger"><i class="fa fa-trash"></i> Hapus Siswa</button>
+                </form>
               </div>
             </div>
             <div class="card-body">
@@ -55,9 +58,22 @@
                         <td>{{ $item['class'] }}</td>
                         <td>{{ $item['nisn'] }}</td>
                         <td>{{ $item['no_exam'] }}</td>
-                        <td>{{ $item['status'] }}</td>
+                        <td>
+                          @if($item['status'] == 1)
+                          Lulus
+                          @else
+                          Tidak Lulus
+                        @endif
+                      </td>
                         <td>{{ $item['message'] }}</td>
-                        <td>koosng</td>
+                        <td>
+                          <a href="{{ route('siswa') }}/{{ $item['id'] }}/edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                          <form action="/siswas/{{ $item['id'] }}" method="post">
+                            @csrf
+                            @method('delete')
+                          <button class="btn btn-danger" onclick="return confirm('Are You Sure?')"><i class="fa fa-times"></i></button>
+                          </form>
+                        </td>
                        </tr>
                       @php
                           $no++;

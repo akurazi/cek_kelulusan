@@ -15,7 +15,7 @@
               <h4>Total Siswa</h4>
             </div>
             <div class="card-body">
-              10
+              {{ $total_siswa }}
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
               <h4>Siswa Lulus</h4>
             </div>
             <div class="card-body">
-              42
+              {{ $siswa_lulus }}
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
               <h4>Kelulusan Tertunda</h4>
             </div>
             <div class="card-body">
-              1,201
+              {{ $siswa_tdklulus }}
             </div>
           </div>
         </div>
@@ -57,10 +57,10 @@
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Pengaturan Website</h4>
+              <a href="{{ route('web') }}"> <h4> Pengaturan Website</h4></a>
             </div>
             <div class="card-body">
-              47
+             
             </div>
           </div>
         </div>
