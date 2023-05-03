@@ -32,7 +32,11 @@
       <nav class="navbar bg-primary">
         <img src="{{ asset('files/logo/'.$web->logo) }}" width="50" height="50">
         <a class="navbar-brand" href="">{{ $web->web_name }}</a>
-          <a class="btn btn-warning" href="/login">Login</a>
+        @if(Auth::guest())
+        <a class="btn btn-warning" href="/login">Login</a>
+        @else
+        <a class="btn btn-warning" href="/logout">Logout</a>
+          @endif
       </nav>
       <!-- Main Content -->
       <div class="main-content text-center">

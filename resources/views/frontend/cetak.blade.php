@@ -114,9 +114,13 @@
     Yang Bersangkutan dinyatakan :
     <center>
         <table style="border: 1px solid black;">
-
+            <?php if($student->status == 1){
+                $hasil = "Lulus";
+            } else{
+                $hasil = "Tidak Lulus";
+            }?>
             <td>
-                <p><i><b> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;LULUS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</b></i></p>
+                <p><i><b> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; {{ $hasil }}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; </b></i></p>
             </td>
 
         </table>
