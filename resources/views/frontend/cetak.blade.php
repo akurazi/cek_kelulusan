@@ -83,7 +83,7 @@
             <td>:</td>
             <td>{{ $student->name }}</td>
         </tr>
-        <tr>
+        {{-- <tr>
             <td>NAMA ORANGTUA</td>
             <td>:</td>
             <td>{{ $student->nama_ortu }}</td>
@@ -92,7 +92,7 @@
             <td>TEMPAT, TANGGAL LAHIR</td>
             <td>:</td>
             <td>{{ $student->tempat_tgl_lahir }}</td>
-        </tr>
+        </tr> --}}
 
 
         <tr>
@@ -131,7 +131,7 @@
     <div style="float:right;">
         {{ $school->tempat }}, {{ $school->tanggal }} <br>
         {{ $school->jabatan_penandatangan }}, <br>
-        <img src="/files/ttd/{{ $school->tanda_tangan}}" alt="" width="100"><br>
+        <img src="{{ asset('/files/logo/'.$school->tanda_tangan)}}" alt="" width="100"><br>
         <br>
 
         <b><u>{{ $school->nama_penandatangan }}</u></b><br>

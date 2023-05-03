@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('/setting')->group(function () {
         Route::get('/', [SettingController::class, 'index'])->name('setting');
-        Route::get('/edit', [SettingController::class, 'show']);
+        Route::get('/edit', [SettingController::class, 'edit']);
         Route::post('/store', [SettingController::class, 'store']);
     });
 

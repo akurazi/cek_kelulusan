@@ -17,7 +17,8 @@ class WebController extends Controller
         $web = Web::latest()->first();
         // dd($web);
         return view('admin.web.index', [
-            'web' => $web
+            'web' => $web,
+            'title' => 'set'
         ]);
     }
 

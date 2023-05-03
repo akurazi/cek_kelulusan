@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\web;
+use App\Models\User;
 use App\Models\School;
 use Illuminate\Http\Request;
 
@@ -14,9 +16,14 @@ class SchoolController extends Controller
      */
     public function index()
     {
+        $username = User::latest()->first();
+        $web = Web::latest()->first();
         $data = School::latest()->first();
         return view('admin.school.index', [
-            'data' => $data
+            'data' => $data,
+            'web' => $web,
+            'title' => 'Setting',
+            'nama'      => $username
         ]);
     }
 
@@ -60,9 +67,12 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
+        $web = Web::latest()->first();
         $data = School::latest()->first();
         return view('admin.school.edit', [
-            'data' => $data
+            'data' => $data,
+            'web' => $web,
+            'title' => 'Setting'
         ]);
     }
 

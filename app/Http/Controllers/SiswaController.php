@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\web;
+use App\Models\User;
 use App\Models\Siswa;
 use App\Imports\SiswaImport;
-use App\Models\web;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -17,12 +18,14 @@ class SiswaController extends Controller
      */
     public function index()
     {
+        $username = User::latest()->first();
         $siswa = Siswa::all();
         $web = Web::latest()->first();
         return view('admin.siswa.index', [
             'siswa' => $siswa,
             'web' => $web,
-            'title' => 'Siswa'
+            'title' => 'Siswa',
+            'nama'      => $username
         ]);
     }
 
@@ -33,19 +36,23 @@ class SiswaController extends Controller
      */
     public function create()
     {
+        $username = User::latest()->first();
         $web = Web::latest()->first();
         return view('admin.siswa.tambah', [
             'web' => $web,
-            'title' => 'Siswa'
+            'title' => 'Siswa',
+            'nama'      => $username
         ]);
     }
 
     public function upload()
     {
+        $username = User::latest()->first();
         $web = Web::latest()->first();
         return view('admin.siswa.upload', [
             'web' => $web,
-            'title' => 'Siswa'
+            'title' => 'Siswa',
+            'nama'      => $username
         ]);
     }
 
@@ -129,11 +136,12 @@ class SiswaController extends Controller
     {
 
         $web = Web::latest()->first();
-
+        $username = User::latest()->first();
         return view('admin.siswa.edit', [
             'web' => $web,
             'title' => 'Siswa',
-            'siswa' => $siswa
+            'siswa' => $siswa,
+            'nama'      => $username
         ]);
     }
 

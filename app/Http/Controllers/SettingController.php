@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\web;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -14,9 +15,12 @@ class SettingController extends Controller
      */
     public function index()
     {
+        $web = Web::latest()->first();
         $setting = Setting::latest()->first();
         return view('admin.setting.index', [
-            'setting' => $setting
+            'setting' => $setting,
+            'web' => $web,
+            'title' => 'Pengumuman'
         ]);
     }
 
@@ -56,7 +60,6 @@ class SettingController extends Controller
      */
     public function show(Setting $setting)
     {
-        return view('admin.setting.edit');
     }
 
     /**
@@ -67,7 +70,11 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        //
+        $web = Web::latest()->first();
+        return view('admin.setting.edit', [
+            'web' => $web,
+            'title' => 'Pengumuman'
+        ]);
     }
 
     /**
